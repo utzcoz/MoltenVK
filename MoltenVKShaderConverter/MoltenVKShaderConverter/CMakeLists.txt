@@ -10,8 +10,9 @@ add_library(MoltenVK_ShaderConverter STATIC ${SOURCES})
 add_library(MoltenVK::ShaderConverter ALIAS MoltenVK_ShaderConverter)
 
 target_include_directories(MoltenVK_ShaderConverter PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/..")
-# Supplying the dual source blending outputs is a SPIRV-Tools optimizer pass, which needs the
-# optimizer's internal headers and the generated tables they include.
+# The transforms that take shader object state out of the pipeline and into the shader are
+# SPIRV-Tools optimizer passes, which need the optimizer's internal headers and the generated
+# tables they include.
 target_include_directories(MoltenVK_ShaderConverter PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/../../External/SPIRV-Tools"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../../External/SPIRV-Tools/build"
